@@ -25,6 +25,13 @@ export AZ_SUBSCRIPTION_ID="887e4330-e973-48af-b7de-67ad3319c57d"
 export AZ_VNET_RESOURCE_GROUP_NAME="rg-networks"
 export AZ_VNET_NAME="vnet-network-001"
 export AZ_SUBNET_NAME="sn-ado-agents"
+# uncomment below if you want to adjust default behaviour and set your own values
+# export AZ_VMSS_INSTANCE_COUNT=1
+# export AZ_LOCATION=uksouth
+# export AZ_VMSS_VM_SKU=Standard_B2s
+# export AZ_VMSS_IMAGE=Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest
+# export AZ_VMSS_ADMIN_NAME=adminuser
+# export AZ_VMSS_BOOT_DIAGS_ENABLED=true
 
 ````
 
