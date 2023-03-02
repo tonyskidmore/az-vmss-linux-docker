@@ -54,16 +54,14 @@ vmss_boot_diags_enabled=$(az vmss show \
               --query "virtualMachineProfile.diagnosticsProfile.bootDiagnostics.enabled" \
               --output tsv)
 
-# vmss_boot_diags_enabled=$(echo "$vmss_show" | jq -r '.virtualMachineProfile.diagnosticsProfile.bootDiagnostics.enabled')
-
 if [[ "$AZ_VMSS_BOOT_DIAGS_ENABLED" == "true" && "$vmss_boot_diags_enabled" != "true" ]]
 then
-  display_message info "Enabling boot diagnostics on $AZ_VMSS_NAME"
+  echo "Enabling boot diagnostics on $AZ_VMSS_NAME"
   az vmss update \
     --name "$AZ_VMSS_NAME" \
     --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
     --subscription "$AZ_SUBSCRIPTION_ID" \
     --set virtualMachineProfile.diagnosticsProfile='{"bootDiagnostics": {"Enabled" : "True"}}'
 else
-  display_message warning "Boot diagnostics for $AZ_VMSS_NAME already enabled"
+  echo "Boot diagnostics for $AZ_VMSS_NAME already enabled"
 fi
