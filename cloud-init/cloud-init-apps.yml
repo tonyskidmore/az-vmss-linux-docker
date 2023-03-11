@@ -5,6 +5,7 @@ bootcmd:
   - echo "[Unit]\nAfter=cloud-final.service" > /etc/systemd/system/walinuxagent.service.d/override.conf
   - sed "s/After=multi-user.target//g" /lib/systemd/system/cloud-final.service > /etc/systemd/system/cloud-final.service
   - systemctl daemon-reload
+  - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -           # Hashicorp
 
 merge_how:
  - name: list
@@ -149,6 +150,7 @@ packages:
   - azure-cli
   - docker-ce
   - docker-ce-cli
+  - gnupg
   - jq
   - powershell
   - python3
