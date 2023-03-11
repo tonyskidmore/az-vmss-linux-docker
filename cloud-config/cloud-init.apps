@@ -8,15 +8,32 @@ bootcmd:
 
 apt:
   sources:
-    docker.list:
-      source: deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable
-      keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    microsoft:
+      keyid: EB3E94ADBE1229CF
+      source: "deb [arch=amd64] https://packages.microsoft.com/ubuntu/20.04/prod/ focal main"
+    azure-cli:
+      keyid: EB3E94ADBE1229CF
+      source: "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ focal main"
+    docker:
+      keyid: 8D81803C0EBFCD88
+      source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    hashicorp:
+      keyid: DA418C88A3219F7B
+      source: "deb [arch=amd64] https://apt.releases.hashicorp.com focal main"
 
 package_update: true
 
 packages:
+  - apt-transport-https
+  - azure-cli
   - docker-ce
   - docker-ce-cli
+  - jq
+  - python3
+  - python3-pip
+  - python3-venv
+  - terraform
+
 
 groups:
   - docker
