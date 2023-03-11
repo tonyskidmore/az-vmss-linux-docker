@@ -41,7 +41,6 @@ az rest --uri "$uri" \
         --method patch
 
 az vmss reimage --name "$AZ_VMSS_NAME" \
-                --no-wait \
                 --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
                 --subscription "$AZ_SUBSCRIPTION_ID"
 
