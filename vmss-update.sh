@@ -1,15 +1,54 @@
 #!/bin/bash
+set -euo pipefail
 
+# defaults
+export AZ_LOCATION=${AZ_LOCATION:-uksouth}
+export AZ_VMSS_VM_SKU=${AZ_VMSS_VM_SKU:-Standard_B2s}
+export AZ_VMSS_STORAGE_SKU=${AZ_VMSS_STORAGE_SKU:-Standard_LRS}
+export AZ_VMSS_ADMIN_NAME=${AZ_VMSS_ADMIN_NAME:-adminuser}
+export AZ_VMSS_INSTANCE_COUNT=${AZ_VMSS_INSTANCE_COUNT:-0}
+export AZ_VMSS_IDENTITY=${AZ_VMSS_IDENTITY:-[system]}
+export AZ_VMSS_IMAGE=${AZ_VMSS_IMAGE:-Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest}
+export AZ_VMSS_BOOT_DIAGS_ENABLED=${AZ_VMSS_BOOT_DIAGS_ENABLED:-true}
+export AZ_VMSS_CLOUD_INIT=${AZ_VMSS_CLOUD_INIT:-cloud-init/cloud-init.yml}
 
-az rest -m patch -b '{
+create_patch_data()
+{
+  cat <<EOF
+{
   "properties": {
     "virtualMachineProfile": {
       "osProfile": {
-        "customData": "IyEvYmuL3NoCgpl.....Y2hvICJoZWxsbPi9bXAvd=="
+        "customData": "$custom_data"
       }
     }
   }
-}' -u 'https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{group-name}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmss-name}?api-version=2022-08-01'
+}
+EOF
+}
+
+custom_data=$(base64 < "$AZ_VMSS_CLOUD_INIT")
+body=$(create_patch_data)
+uri="https://management.azure.com/subscriptions/$AZ_SUBSCRIPTION_ID/resourceGroups/$AZ_VMSS_RESOURCE_GROUP_NAME/providers/Microsoft.Compute/virtualMachineScaleSets/$AZ_VMSS_NAME?api-version=2022-11-01"
+
+az rest --uri "$uri" \
+        --body "$body" \
+        --method patch
+
+az vmss reimage --name "$AZ_VMSS_NAME" \
+                --no-wait \
+                --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
+                --subscription "$AZ_SUBSCRIPTION_ID"
+
+# az rest -m patch -b '{
+#   "properties": {
+#     "virtualMachineProfile": {
+#       "osProfile": {
+#         "customData": "IyEvYmuL3NoCgpl.....Y2hvICJoZWxsbPi9bXAvd=="
+#       }
+#     }
+#   }
+# }' -u 'https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{group-name}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmss-name}?api-version=2022-08-01'
 
 # https://learn.microsoft.com/en-us/rest/api/compute/virtual-machine-scale-sets/update?tabs=HTTP
 # PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}?api-version=2022-11-01
