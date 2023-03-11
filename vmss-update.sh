@@ -27,7 +27,7 @@ create_patch_data()
 EOF
 }
 
-custom_data=$(base64 < "$AZ_VMSS_CLOUD_INIT")
+custom_data=$(base64 -w 0 < "$AZ_VMSS_CLOUD_INIT")
 body=$(create_patch_data)
 uri="https://management.azure.com/subscriptions/$AZ_SUBSCRIPTION_ID/resourceGroups/$AZ_VMSS_RESOURCE_GROUP_NAME/providers/Microsoft.Compute/virtualMachineScaleSets/$AZ_VMSS_NAME?api-version=2022-11-01"
 
