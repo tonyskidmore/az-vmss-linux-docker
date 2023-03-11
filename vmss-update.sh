@@ -31,8 +31,13 @@ custom_data=$(base64 < "$AZ_VMSS_CLOUD_INIT")
 body=$(create_patch_data)
 uri="https://management.azure.com/subscriptions/$AZ_SUBSCRIPTION_ID/resourceGroups/$AZ_VMSS_RESOURCE_GROUP_NAME/providers/Microsoft.Compute/virtualMachineScaleSets/$AZ_VMSS_NAME?api-version=2022-11-01"
 
+printf "custom_data: %s\n" "$custom_data"
+printf "uri: %s\n" "$uri"
+printf "body: \n%s\n" "$body"
+
 az rest --uri "$uri" \
         --body "$body" \
+        --headers "Accept=application/json" \
         --method patch
 
 az vmss reimage --name "$AZ_VMSS_NAME" \
