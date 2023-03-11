@@ -4,7 +4,7 @@ This will create a Ubuntu 20.04 Linux VMSS with Docker enabled by default to all
 
 The below shows an example of using the defaults along with deployment specific examples:
 
-1. Open Azure Cloud Shell at https://shell.azure.com and run a Bash session
+1. Open Azure Cloud Shell at https://shell.azure.com and run a **Bash** session
 
 2. Clone the repository and change into the code directory.
 
