@@ -43,7 +43,7 @@ az vmss create --load-balancer "" \
   --single-placement-group false \
   --platform-fault-domain-count 1 \
   --os-disk-caching readonly \
-  --custom-data cloud-init \
+  --custom-data "$AZ_VMSS_CLOUD_INIT" \
   --output json
 
 az resource wait --exists --ids "/subscriptions/$AZ_SUBSCRIPTION_ID/resourceGroups/$AZ_VMSS_RESOURCE_GROUP_NAME/providers/Microsoft.Compute/virtualMachineScaleSets/$AZ_VMSS_NAME"
