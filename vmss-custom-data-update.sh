@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -eo pipefail
 
 required_variables=("AZ_VMSS_CLOUD_INIT" "AZ_SUBSCRIPTION_ID" "AZ_VMSS_NAME" 
 "AZ_VMSS_RESOURCE_GROUP_NAME")
