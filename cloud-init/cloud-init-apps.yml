@@ -150,7 +150,7 @@ apt:
 
 packages:
   - apt-transport-https
-  - azure-cli
+  - [azure-cli,2.42.0]
   - docker-ce
   - docker-ce-cli
   - gnupg
