@@ -45,7 +45,7 @@ export AZ_SUBNET_NAME="sn-ado-agents"
 
 ## Update
 
-It is possible to update the custom data aftet the VMSS has been initially deployed if needed.
+It is possible to update the custom data after the VMSS has been initially deployed if needed.
 You will still have to set the required environment variables and then run the update script.
 The example below shows using the `cloud-init-apps.yml` config file to install some additional useful apps.
 
@@ -64,7 +64,7 @@ Then allow time for the existing agents to be deleted, then reapply the original
 
 ## Tools
 
-The `cloud-init` configs in `/cloud-init` shows example of installing other packages as part of the VMSS instance deployments.
+The `cloud-init` configs in `/cloud-init` shows examples of installing other packages as part of the VMSS instance deployments.
 The tools are typically useful in Azure Pipelines jobs, the tools included in the examples are:
 
 `cloud-init/cloud-init.yml`  
