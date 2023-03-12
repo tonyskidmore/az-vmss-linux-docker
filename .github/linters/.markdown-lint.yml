@@ -1,9 +1,9 @@
 ---
 
 # MD013/line-length - Line length
-# MD013:
-  # Number of characters
-  # line_length: 120
+MD013:
+  Number of characters
+  line_length: 200
 
 # MD034/no-bare-urls - Bare URL used
 # MD034: false
