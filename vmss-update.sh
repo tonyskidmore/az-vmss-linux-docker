@@ -43,7 +43,7 @@ az rest --uri "$uri" \
 az vmss reimage --name "$AZ_VMSS_NAME" \
                 --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
                 --subscription "$AZ_SUBSCRIPTION_ID" \
-                --nowait
+                --no-wait
 
 # az rest -m patch -b '{
 #   "properties": {
