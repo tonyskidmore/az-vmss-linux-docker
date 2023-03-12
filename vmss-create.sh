@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 # defaults
 export AZ_LOCATION=${AZ_LOCATION:-uksouth}
 export AZ_VMSS_VM_SKU=${AZ_VMSS_VM_SKU:-Standard_B2s}
