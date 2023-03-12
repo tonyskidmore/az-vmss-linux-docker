@@ -9,7 +9,7 @@ This will create a Ubuntu 20.04 Linux VMSS with Docker enabled by default to all
 
 The below shows an example of using the defaults along with deployment specific examples:
 
-1. Open Azure Cloud Shell at https://shell.azure.com and run a **Bash** session
+1. Open Azure Cloud Shell at [Azure Cloud Shell](https://shell.azure.com) and run a **Bash** session
 
 2. Clone the repository and change into the code directory.
 
@@ -111,7 +111,7 @@ If the amount of additional tools becomes any larger consider [Store and share r
 | AZ_VNET_NAME                | yes      |                                                              | Virtual network name where the AZ_SUBNET_NAME is located.                         |
 | AZ_VNET_RESOURCE_GROUP_NAME | yes      |                                                              | Resource group name of where the Virtual network is located                       |
 | AZ_LOCATION                 | no       | uksouth                                                      | Azure region.                                                                     |
-| AZ_VMSS_VM_SKU              | no       | Standard_B2s                                                 | VMSS instance SKU - https://azure.microsoft.com/pricing/details/virtual-machines  |
+| AZ_VMSS_VM_SKU              | no       | Standard_B2s                                                 | VMSS instance SKU - see [Linux Virtual Machines Pricing][linux-virtual-machines-pricing] |
 | AZ_VMSS_STORAGE_SKU         | no       | Standard_LRS                                                 | The SKU of the storage account with which to persist VM.                          |
 | AZ_VMSS_ADMIN_NAME          | no       | adminuser                                                    | Name for the admin user account.                                                  |
 | AZ_VMSS_INSTANCE_COUNT      | no       | 0                                                            | Initial default number of VMSS instance.                                          |
@@ -119,3 +119,5 @@ If the amount of additional tools becomes any larger consider [Store and share r
 | AZ_VMSS_IMAGE               | no       | Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest | The Ubuntu 20.04 (focal) image to use.                                            |
 | AZ_VMSS_BOOT_DIAGS_ENABLED  | no       | true                                                         | Enable boot diagnostics.  This is useful for troubleshooting.                     |
 | AZ_VMSS_CLOUD_INIT          | no       | cloud-init/cloud-init.yml                                    | The cloud-init data to be sent as custom-data.                                    |
+
+[linux-virtual-machines-pricing]: https://azure.microsoft.com/pricing/details/virtual-machines
