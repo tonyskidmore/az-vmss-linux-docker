@@ -1,5 +1,7 @@
 # az-vmss-linux-docker
 
+[![GitHub Super-Linter](https://github.com/tonyskidmore/az-vmss-linux-docker/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ## Create
 
 Simple creation of an Azure VM Scale Set (VMSS) to be used as an Azure DevOps Azure virtual machine scale set agent pool.
