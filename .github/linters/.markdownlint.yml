@@ -2,3 +2,6 @@
 MD013:
   # Number of characters
   line_length: 120
+
+# MD034/no-bare-urls - Bare URL used
+MD034: false
