@@ -155,6 +155,8 @@ packages:
   - docker-ce
   - docker-ce-cli
   - jq
+  - packer
+  # - [packer,1.8.5]
   - powershell
   - python3
   - python3-pip
@@ -162,6 +164,7 @@ packages:
   - software-properties-common
   # - terraform
   - [terraform,1.3.9]
+  - wget
 
 # timezone: Europe/London
 # locale: "en_US.UTF-8"
