@@ -183,12 +183,14 @@ system_info:
 write_files:
   - content: |
       #!/bin/bash
-      whoami
-    path: /tmp/whoami.sh
+      wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /tmp/yq
+      mv /tmp/yq /usr/bin
+      chmod +x /usr/bin/yq
+    path: /tmp/get-yq.sh
     permissions: 0777
 
 runcmd:
-  - /tmp/whoami.sh > /tmp/whoami.out
+  - /tmp/get-yq.sh
 
 # write_files:
 #   - content: |
