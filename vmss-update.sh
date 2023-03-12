@@ -12,6 +12,8 @@ export AZ_VMSS_IMAGE=${AZ_VMSS_IMAGE:-Canonical:0001-com-ubuntu-server-focal:20_
 export AZ_VMSS_BOOT_DIAGS_ENABLED=${AZ_VMSS_BOOT_DIAGS_ENABLED:-true}
 export AZ_VMSS_CLOUD_INIT=${AZ_VMSS_CLOUD_INIT:-cloud-init/cloud-init.yml}
 
+# https://learn.microsoft.com/en-us/rest/api/compute/virtual-machine-scale-sets/update?tabs=HTTP
+
 create_patch_data()
 {
   cat <<EOF
@@ -40,10 +42,15 @@ az rest --uri "$uri" \
         --headers "Accept=application/json" \
         --method patch
 
-az vmss reimage --name "$AZ_VMSS_NAME" \
-                --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
-                --subscription "$AZ_SUBSCRIPTION_ID" \
-                --no-wait
+# az vmss reimage --name "$AZ_VMSS_NAME" \
+#                 --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
+#                 --subscription "$AZ_SUBSCRIPTION_ID" \
+#                 --no-wait
+
+az vmss update --name "$AZ_VMSS_RESOURCE_GROUP_NAME" \
+               --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
+               --subscription "$AZ_SUBSCRIPTION_ID" \
+               --no-wait
 
 # az rest -m patch -b '{
 #   "properties": {
@@ -55,7 +62,7 @@ az vmss reimage --name "$AZ_VMSS_NAME" \
 #   }
 # }' -u 'https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{group-name}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmss-name}?api-version=2022-08-01'
 
-# https://learn.microsoft.com/en-us/rest/api/compute/virtual-machine-scale-sets/update?tabs=HTTP
+
 # PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}?api-version=2022-11-01
 # https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az-rest
 

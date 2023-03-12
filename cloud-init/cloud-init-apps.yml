@@ -151,6 +151,8 @@ apt:
 packages:
   - apt-transport-https
   - [azure-cli,2.42.0]
+  - ca-certificates
+  - curl
   - docker-ce
   - docker-ce-cli
   # - gnupg
@@ -160,6 +162,7 @@ packages:
   - python3-pip
   - python3-venv
   # - terraform
+  - software-properties-common
   - [terraform,1.3.9]
 
 # timezone: Europe/London
