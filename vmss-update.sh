@@ -42,6 +42,8 @@ az rest --uri "$uri" \
         --headers "Accept=application/json" \
         --method patch
 
+# trying to update an existing instance and reimaging doesn't seem to work
+
 # az vmss update --name "$AZ_VMSS_NAME"\
 #                --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
 #                --subscription "$AZ_SUBSCRIPTION_ID" \
@@ -51,39 +53,3 @@ az rest --uri "$uri" \
 #                 --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
 #                 --subscription "$AZ_SUBSCRIPTION_ID" \
 #                 --no-wait
-
-# az rest -m patch -b '{
-#   "properties": {
-#     "virtualMachineProfile": {
-#       "osProfile": {
-#         "customData": "IyEvYmuL3NoCgpl.....Y2hvICJoZWxsbPi9bXAvd=="
-#       }
-#     }
-#   }
-# }' -u 'https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{group-name}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmss-name}?api-version=2022-08-01'
-
-
-# PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}?api-version=2022-11-01
-# https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az-rest
-
-# az rest --uri
-#         [--body]
-#         [--headers]
-#         [--method {delete, get, head, options, patch, post, put}]
-#         [--output-file]
-#         [--resource]
-#         [--skip-authorization-header]
-#         [--uri-parameters]
-
-# az rest --method get --uri /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}?api-version=2019-03-01
-
-# https://learn.microsoft.com/en-us/cli/azure/vmss?view=azure-cli-latest#az-vmss-reimage
-
-# az vmss reimage [--ids]
-#                 [--instance-ids]
-#                 [--name]
-#                 [--no-wait]
-#                 [--resource-group]
-#                 [--subscription]
-
-# az vmss reimage --name MyScaleSet --resource-group MyResourceGroup --subscription MySubscription

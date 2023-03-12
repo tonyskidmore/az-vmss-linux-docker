@@ -1,4 +1,7 @@
 # az-vmss-linux-docker
+
+## Create
+
 Simple creation of an Azure VM Scale Set (VMSS) to be used as an Azure DevOps Azure virtual machine scale set agent pool.
 This will create a Ubuntu 20.04 Linux VMSS with Docker enabled by default to allow for container image creation and container jobs.
 
@@ -44,3 +47,17 @@ export AZ_SUBNET_NAME="sn-ado-agents"
 ````
 
 5. Login into Azure DevOps and create the Azure virtual machine scale set agent pool.
+
+## Update
+
+## Environment variables
+
+| environment variable        | required | default  | description                                            |
+|-----------------------------|----------|----------|--------------------------------------------------------|
+| AZ_VMSS_ADMIN_PASSWORD      | yes      |          |
+| AZ_VMSS_NAME                | yes      |          |
+| AZ_VMSS_RESOURCE_GROUP_NAME | yes      |
+| AZ_SUBSCRIPTION_ID          | yes      |
+| AZ_VNET_RESOURCE_GROUP_NAME | yes      |
+| AZ_VNET_NAME                | yes      |
+| AZ_SUBNET_NAME              | yes      |
