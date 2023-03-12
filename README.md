@@ -87,6 +87,7 @@ The tools are typically useful in Azure Pipelines jobs, the tools included in th
 - software-properties-common
 - terraform
 - wget
+- yq
 
 _Note:_ adding packages as part of `cloud-init` increases the deployment time of instances.
 For example, installiing just Docker might take ~3 minutes to deploy an instance.
