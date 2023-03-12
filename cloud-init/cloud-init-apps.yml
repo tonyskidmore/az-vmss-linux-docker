@@ -162,8 +162,8 @@ packages:
   - python3-pip
   - python3-venv
   - software-properties-common
-  # - terraform
-  - [terraform,1.3.9]
+  - terraform
+  # - [terraform,1.3.9]
   - wget
 
 # timezone: Europe/London
