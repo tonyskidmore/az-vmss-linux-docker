@@ -42,15 +42,15 @@ az rest --uri "$uri" \
         --headers "Accept=application/json" \
         --method patch
 
-az vmss reimage --name "$AZ_VMSS_NAME" \
-                --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
-                --subscription "$AZ_SUBSCRIPTION_ID" \
-                --no-wait
-
 az vmss update --name "$AZ_VMSS_NAME"\
                --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
                --subscription "$AZ_SUBSCRIPTION_ID" \
                --no-wait
+
+az vmss reimage --name "$AZ_VMSS_NAME" \
+                --resource-group "$AZ_VMSS_RESOURCE_GROUP_NAME" \
+                --subscription "$AZ_SUBSCRIPTION_ID" \
+                --no-wait
 
 # az rest -m patch -b '{
 #   "properties": {
