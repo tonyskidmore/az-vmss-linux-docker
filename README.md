@@ -19,6 +19,7 @@ git clone https://github.com/tonyskidmore/az-vmss-linux-docker.git
 cd az-vmss-linux-docker
 
 ````
+
 3. Export the necessary environment variable to set the script behaviour.
 
 ````bash
@@ -63,17 +64,18 @@ The updated `custom-data` will only apply to newly deployed VMSS instances.
 To refresh any deployed instances set the `Number of agents to keep on standby` in Azure DevOps for the agent pool to `0`.
 Then allow time for the existing agents to be deleted, then reapply the original value if desired.
 
-
 ## Tools
 
 The `cloud-init` configs in `/cloud-init` shows examples of installing other packages as part of the VMSS instance deployments.
 The tools are typically useful in Azure Pipelines jobs, the tools included in the examples are:
 
 `cloud-init/cloud-init.yml`  
+
 - docker-ce
 - docker-ce-cli
 
 `cloud-init/cloud-init-apps.yml`  
+
 - apt-transport-https
 - azure-cli
 - ca-certificates
@@ -96,8 +98,6 @@ For example, installiing just Docker might take ~3 minutes to deploy an instance
 Adding all of the toole above might extend that out to ~6 minutes, so choose your tools judiciously.
 Only install tools in this manner that you are going to need.  
 If the amount of additional tools becomes any larger consider [Store and share resources in an Azure Compute Gallery](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery).
-
-
 
 ## Environment variables
 
