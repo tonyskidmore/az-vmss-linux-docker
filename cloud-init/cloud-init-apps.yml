@@ -167,7 +167,7 @@ packages:
 
 snap:
   commands:
-    00: ['install', 'yq']
+    - ['snap', 'install', 'jq']
 
 # timezone: Europe/London
 # locale: "en_US.UTF-8"
@@ -180,3 +180,30 @@ groups:
 system_info:
   default_user:
     groups: [docker]
+
+write_files:
+  - content: |
+      #!/bin/bash
+      whoami > /tmp/whoami.out
+    path: /tmp/whoami.sh
+    permissions: 0777
+
+runcmd:
+  - '/bin/bash -c "/tmp/whoami.sh"'
+
+# write_files:
+#   - content: |
+#       #!/bin/bash
+#       cd /home/ansible
+#       pip3 install --user --upgrade pip
+#       pip3 install --user ansible
+#       git clone https://github.com/wahlax/cloud-init-ansible-example.git
+#       cd cloud-init-ansible-example
+#       /home/ansible/.local/bin/ansible-galaxy install -r requirements.yml
+#       /home/ansible/.local/bin/ansible-playbook -c local -i "127.0.0.1," playbook.yml
+#     path: /tmp/init-with-ansible.shl
+#     permissions: 0700
+# runcmd:
+#   - 'sudo mv /tmp/init-with-ansible.shl /home/ansible/init-with-ansible.shl'
+#   - 'sudo chown ansible:ansible /home/ansible/init-with-ansible.shl'
+#   - 'sudo -u ansible /bin/bash -c "/home/ansible/init-with-ansible.shl > /home/ansible/init-with-ansible.log 2>&1"'
