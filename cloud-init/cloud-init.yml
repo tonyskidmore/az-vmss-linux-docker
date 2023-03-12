@@ -1,5 +1,7 @@
 #cloud-config
 
+---
+
 bootcmd:
   - mkdir -p /etc/systemd/system/walinuxagent.service.d
   - echo "[Unit]\nAfter=cloud-final.service" > /etc/systemd/system/walinuxagent.service.d/override.conf

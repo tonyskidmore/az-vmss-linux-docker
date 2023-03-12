@@ -9,6 +9,7 @@ export AZ_VMSS_INSTANCE_COUNT=${AZ_VMSS_INSTANCE_COUNT:-0}
 export AZ_VMSS_IDENTITY=${AZ_VMSS_IDENTITY:-[system]}
 export AZ_VMSS_IMAGE=${AZ_VMSS_IMAGE:-Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:latest}
 export AZ_VMSS_BOOT_DIAGS_ENABLED=${AZ_VMSS_BOOT_DIAGS_ENABLED:-true}
+export AZ_VMSS_CLOUD_INIT=${AZ_VMSS_CLOUD_INIT:-cloud-init/cloud-init.yml}
 
 required_variables=("AZ_LOCATION" "AZ_VNET_RESOURCE_GROUP_NAME" "AZ_VNET_NAME" 
 "AZ_SUBNET_NAME" "AZ_SUBSCRIPTION_ID" "AZ_VMSS_RESOURCE_GROUP_NAME" "AZ_VMSS_NAME" 
@@ -42,7 +43,7 @@ az vmss create --load-balancer "" \
   --single-placement-group false \
   --platform-fault-domain-count 1 \
   --os-disk-caching readonly \
-  --custom-data cloud-init \
+  --custom-data "$AZ_VMSS_CLOUD_INIT" \
   --output json
 
 az resource wait --exists --ids "/subscriptions/$AZ_SUBSCRIPTION_ID/resourceGroups/$AZ_VMSS_RESOURCE_GROUP_NAME/providers/Microsoft.Compute/virtualMachineScaleSets/$AZ_VMSS_NAME"
