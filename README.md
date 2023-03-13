@@ -49,12 +49,16 @@ export AZ_SUBNET_NAME="sn-ado-agents"
 ## Update
 
 It is possible to update the custom data after the VMSS has been initially deployed if needed.
-You will still have to set the required environment variables and then run the update script.
+You will have to set only a subset of the required environment variables and then run the update script.
 The example below shows using the `cloud-init-apps.yml` config file to install some additional useful apps.
 
 ````bash
 
-export AZ_VMSS_CLOUD_INIT=cloud-init/cloud-init-apps.yml
+export AZ_VMSS_RESOURCE_GROUP_NAME="rg-ado-agents"
+export AZ_SUBSCRIPTION_ID="887e4330-e973-48af-b7de-67ad3319c57d"
+export AZ_VMSS_NAME="vmss-ado-agent-001"
+export AZ_VMSS_CLOUD_INIT="cloud-init/cloud-init-apps.yml"
+
 ./vmss-custom-data-update.sh
 
 ````
